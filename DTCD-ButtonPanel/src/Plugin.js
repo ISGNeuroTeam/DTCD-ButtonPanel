@@ -19,8 +19,8 @@ export class VisualizationText extends PanelPlugin {
   constructor (guid, selector) {
     super();
 
-    const logSystem = new LogSystemAdapter(guid, pluginMeta.name);
-    const eventSystem = new EventSystemAdapter(guid);
+    const logSystem = new LogSystemAdapter('0.4.0', guid, pluginMeta.name);
+    const eventSystem = new EventSystemAdapter('0.3.0', guid);
 
     this.#eventSystem = eventSystem;
     this.#eventSystem.registerPluginInstance(this, ['Clicked']);
