@@ -52,8 +52,27 @@ export class VisualizationText extends PanelPlugin {
     return config;
   }
 
-  setFormSettings() {}
+  setFormSettings(config) {
+    return this.setPluginConfig(config);
+  }
 
-  getFormSettings() {}
+  getFormSettings() {
+    return {
+      fields: [
+        {
+          component: 'title',
+          propValue: 'Общие настройки',
+        },
+        {
+          component: 'text',
+          propName: 'title',
+          attrs: {
+            label: 'Отображаемый текст',
+            required: true,
+          },
+        },
+      ],
+    };
+  }
 
 }
