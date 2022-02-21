@@ -1,14 +1,9 @@
 import pluginMeta from './Plugin.Meta';
 import PluginComponent from './PluginComponent.vue';
 
-import {
-  PanelPlugin,
-  LogSystemAdapter,
-  EventSystemAdapter,
-} from './../../DTCD-SDK';
+import { PanelPlugin, LogSystemAdapter, EventSystemAdapter } from './../../DTCD-SDK';
 
 export class VisualizationText extends PanelPlugin {
-
   #title;
   #eventSystem;
 
@@ -16,11 +11,11 @@ export class VisualizationText extends PanelPlugin {
     return pluginMeta;
   }
 
-  constructor (guid, selector) {
+  constructor(guid, selector) {
     super();
 
-    const logSystem = new LogSystemAdapter('0.4.0', guid, pluginMeta.name);
-    const eventSystem = new EventSystemAdapter('0.3.0', guid);
+    const logSystem = new LogSystemAdapter('0.5.0', guid, pluginMeta.name);
+    const eventSystem = new EventSystemAdapter('0.4.0', guid);
 
     this.#eventSystem = eventSystem;
     this.#eventSystem.registerPluginInstance(this, ['Clicked']);
@@ -43,7 +38,6 @@ export class VisualizationText extends PanelPlugin {
       this.#title = title;
       this.vueComponent.setTitle(title);
     }
-
   }
 
   getPluginConfig() {
@@ -74,5 +68,4 @@ export class VisualizationText extends PanelPlugin {
       ],
     };
   }
-
 }
