@@ -1,11 +1,12 @@
 <template>
   <div ref="container" class="container">
-    <button
+    <base-button
       ref="btn"
       class="button"
       @click="clickHandler"
       v-text="title"
-    />
+    >
+    </base-button>
   </div>
 </template>
 
