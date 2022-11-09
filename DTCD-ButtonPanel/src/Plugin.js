@@ -5,6 +5,7 @@ import { PanelPlugin, LogSystemAdapter, EventSystemAdapter } from './../../DTCD-
 
 export class VisualizationText extends PanelPlugin {
   #eventSystem;
+  #vueComponent;
 
   static getRegistrationMeta() {
     return pluginMeta;
@@ -26,20 +27,20 @@ export class VisualizationText extends PanelPlugin {
       render: h => h(PluginComponent),
     }).$mount(selector);
 
-    this.vueComponent = view.$children[0];
+    this.#vueComponent = view.$children[0];
   }
 
   setPluginConfig(config = {}) {
     const { title } = config;
 
     if (typeof title !== 'undefined') {
-      this.vueComponent.title = title;
+      this.#vueComponent.title = title;
     }
   }
 
   getPluginConfig() {
     const config = {};
-    if (this.vueComponent.title) config.title = this.vueComponent.title;
+    if (this.#vueComponent.title) config.title = this.#vueComponent.title;
     return config;
   }
 
@@ -67,7 +68,7 @@ export class VisualizationText extends PanelPlugin {
   }
 
   getState() {
-    return this.vueComponent.getState();
+    return this.#vueComponent.getState();
   }
 
   setState(newState) {
@@ -75,7 +76,7 @@ export class VisualizationText extends PanelPlugin {
 
     for (const key in newState) {
       if (!Object.hasOwnProperty.call(newState, key)) continue;
-      this.vueComponent[key] = newState[key];
+      this.#vueComponent[key] = newState[key];
     }
   }
 }
