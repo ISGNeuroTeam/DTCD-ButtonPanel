@@ -29,13 +29,6 @@ export default {
       this.logSystem.info(`Button[${this.guid}] clicked`);
       this.logSystem.debug(`Button[${this.guid}] clicked`);
     },
-
-    getState() {
-      const returnedState = {
-        title: this.title,
-      };
-      return returnedState;
-    },
   },
 };
 </script>

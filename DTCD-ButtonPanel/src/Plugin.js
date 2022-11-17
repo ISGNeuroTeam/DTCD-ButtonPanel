@@ -39,8 +39,9 @@ export class VisualizationText extends PanelPlugin {
   }
 
   getPluginConfig() {
-    const config = {};
-    if (this.#vueComponent.title) config.title = this.#vueComponent.title;
+    const config = {
+      title: this.#vueComponent.title,
+    };
     return config;
   }
 
@@ -68,15 +69,12 @@ export class VisualizationText extends PanelPlugin {
   }
 
   getState() {
-    return this.#vueComponent.getState();
+    return this.getPluginConfig();
   }
 
   setState(newState) {
     if (typeof newState !== 'object' ) return;
 
-    for (const key in newState) {
-      if (!Object.hasOwnProperty.call(newState, key)) continue;
-      this.#vueComponent[key] = newState[key];
-    }
+    this.setPluginConfig(newState);
   }
 }
