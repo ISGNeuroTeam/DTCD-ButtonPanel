@@ -24,15 +24,11 @@ export default {
     parent.style.backgroundColor = 'transparent';
   },
   methods: {
-    setTitle(title = '') {
-      this.title = title;
-    },
-
     clickHandler() {
       this.eventSystem.publishEvent('Clicked');
       this.logSystem.info(`Button[${this.guid}] clicked`);
       this.logSystem.debug(`Button[${this.guid}] clicked`);
-    }
+    },
   },
 };
 </script>

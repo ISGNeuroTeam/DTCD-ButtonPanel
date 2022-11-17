@@ -4,8 +4,8 @@ import PluginComponent from './PluginComponent.vue';
 import { PanelPlugin, LogSystemAdapter, EventSystemAdapter } from './../../DTCD-SDK';
 
 export class VisualizationText extends PanelPlugin {
-  #title;
   #eventSystem;
+  #vueComponent;
 
   static getRegistrationMeta() {
     return pluginMeta;
@@ -27,22 +27,21 @@ export class VisualizationText extends PanelPlugin {
       render: h => h(PluginComponent),
     }).$mount(selector);
 
-    this.vueComponent = view.$children[0];
-    this.#title = 'Кнопка';
+    this.#vueComponent = view.$children[0];
   }
 
   setPluginConfig(config = {}) {
     const { title } = config;
 
     if (typeof title !== 'undefined') {
-      this.#title = title;
-      this.vueComponent.setTitle(title);
+      this.#vueComponent.title = title;
     }
   }
 
   getPluginConfig() {
-    const config = {};
-    if (this.#title) config.title = this.#title;
+    const config = {
+      title: this.#vueComponent.title,
+    };
     return config;
   }
 
@@ -67,5 +66,15 @@ export class VisualizationText extends PanelPlugin {
         },
       ],
     };
+  }
+
+  getState() {
+    return this.getPluginConfig();
+  }
+
+  setState(newState) {
+    if (typeof newState !== 'object' ) return;
+
+    this.setPluginConfig(newState);
   }
 }
