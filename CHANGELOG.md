@@ -10,6 +10,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - plugin state API
+- additional settings for the panel
+
+### Changed
+
+- the design of panel
+- logic of the config
 
 ## [0.3.0]
 

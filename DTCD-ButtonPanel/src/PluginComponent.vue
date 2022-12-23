@@ -1,10 +1,17 @@
 <template>
-  <div ref="container" class="container">
+  <div ref="container" class="Container">
+    <div 
+      v-if="config.titleLeft"
+      class="TextLeft"
+      v-text="config.titleLeft"
+    >
+    </div>
     <base-button
       ref="btn"
-      class="button"
+      size="big"
+      :theme="config.buttonColor"
       @click="clickHandler"
-      v-text="title"
+      v-text="config.title"
     >
     </base-button>
   </div>
@@ -17,17 +24,30 @@ export default {
     guid: self.$root.guid,
     logSystem: self.$root.logSystem,
     eventSystem: self.$root.eventSystem,
-    title: 'Кнопка',
+    config: {
+      title: 'Кнопка',
+      titleLeft: 'Текст слева',
+      buttonColor: 'theme_blueSec',
+    }, 
   }),
   mounted() {
     const parent = this.$refs.container.closest('.grid-stack-item-content');
-    parent.style.backgroundColor = 'transparent';
+    parent.style.backgroundColor = 'var(--background_main)';
   },
   methods: {
     clickHandler() {
       this.eventSystem.publishEvent('Clicked');
       this.logSystem.info(`Button[${this.guid}] clicked`);
       this.logSystem.debug(`Button[${this.guid}] clicked`);
+    },
+    setTitle(value = '') {
+      this.config.title = value;
+    },
+    setTitleLeft(value = '') {
+      this.config.titleLeft = value;
+    },
+    setButtonColor(value = '') {
+      this.config.buttonColor = value;
     },
   },
 };

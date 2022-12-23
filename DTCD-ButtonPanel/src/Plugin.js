@@ -1,11 +1,22 @@
 import pluginMeta from './Plugin.Meta';
 import PluginComponent from './PluginComponent.vue';
 
-import { PanelPlugin, LogSystemAdapter, EventSystemAdapter } from './../../DTCD-SDK';
+import { 
+  PanelPlugin, 
+  LogSystemAdapter, 
+  EventSystemAdapter 
+} from './../../DTCD-SDK';
 
 export class VisualizationText extends PanelPlugin {
+
   #eventSystem;
   #vueComponent;
+
+  #config = {
+    title: '',
+    titleLeft:'',
+    buttonColor: 'theme_blueSec',
+  };
 
   static getRegistrationMeta() {
     return pluginMeta;
@@ -30,19 +41,28 @@ export class VisualizationText extends PanelPlugin {
     this.#vueComponent = view.$children[0];
   }
 
-  setPluginConfig(config = {}) {
-    const { title } = config;
+  setVueComponentPropValue(prop, value) {
+    const methodName = `set${prop.charAt(0).toUpperCase() + prop.slice(1)}`;
+    if (this.#vueComponent[methodName]) {
+      this.#vueComponent[methodName](value)
+    } else {
+      throw new Error(`В компоненте отсутствует метод ${methodName} для присвоения свойства ${prop}`)
+    }
+  }
 
-    if (typeof title !== 'undefined') {
-      this.#vueComponent.title = title;
+  setPluginConfig(config = {}) {
+    const configProps = Object.keys(this.#config);
+
+    for (const [prop, value] of Object.entries(config)) {
+      if (!configProps.includes(prop)) continue;
+      this.setVueComponentPropValue(prop, value)
+
+      this.#config[prop] = value;
     }
   }
 
   getPluginConfig() {
-    const config = {
-      title: this.#vueComponent.title,
-    };
-    return config;
+    return { ...this.#config };
   }
 
   setFormSettings(config) {
@@ -63,6 +83,27 @@ export class VisualizationText extends PanelPlugin {
             label: 'Отображаемый текст',
             required: true,
           },
+        },
+        {
+          component: 'text',
+          propName: 'titleLeft',
+          attrs: {
+            label: 'Отображаемый текст слева',
+          },
+        },
+        {
+          component: 'select',
+          propName: 'buttonColor',
+          attrs: {
+            label: 'Выбрать цвет кнопки',
+          },
+          options: () => [
+            { label: 'Зеленый', value: 'theme_green' },
+            { label: 'Синий', value: 'theme_blueSec' },
+            { label: 'Красный', value: 'theme_red' },
+            { label: 'Серый', value: 'theme_secondary' },
+            { label: 'Прозрачный', value: 'theme_alfa' },
+          ],
         },
       ],
     };
