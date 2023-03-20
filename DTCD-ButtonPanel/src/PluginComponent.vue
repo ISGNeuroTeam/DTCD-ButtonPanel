@@ -6,7 +6,9 @@
       v-text="config.titleLeft"
     >
     </div>
-    <base-button
+    <base-button 
+      class="buttonMain" 
+      v-bind:style="!this.config.titleLeft ? {'height': '100%', 'width': '100%'} : {'height': 'auto', 'width': 'auto'} "
       ref="btn"
       size="big"
       :theme="config.buttonColor"
@@ -26,7 +28,7 @@ export default {
     eventSystem: self.$root.eventSystem,
     config: {
       title: 'Кнопка',
-      titleLeft: 'Текст слева',
+      titleLeft: '',
       buttonColor: 'theme_blueSec',
     }, 
   }),

@@ -11,11 +11,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - plugin state API
 - additional settings for the panel
+- options of displaying the panel through the component settings
 
 ### Changed
 
 - the design of panel
 - logic of the config
+
+### Removed  
+
+- textLeft when creating the panel
 
 ## [0.3.0]
 
