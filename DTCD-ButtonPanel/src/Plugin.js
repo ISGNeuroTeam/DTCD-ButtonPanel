@@ -80,7 +80,7 @@ export class VisualizationText extends PanelPlugin {
           component: 'text',
           propName: 'title',
           attrs: {
-            label: 'Отображаемый текст',
+            label: 'Текст в кнопке',
             required: true,
           },
         },
@@ -88,7 +88,7 @@ export class VisualizationText extends PanelPlugin {
           component: 'text',
           propName: 'titleLeft',
           attrs: {
-            label: 'Отображаемый текст слева',
+            label: 'Текст слева от кнопки',
           },
         },
         {

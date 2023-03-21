@@ -8,7 +8,7 @@
     </div>
     <base-button 
       class="buttonMain" 
-      v-bind:style="!this.config.titleLeft ? {'height': '100%', 'width': '100%'} : {'height': 'auto', 'width': 'auto'} "
+      :class="!this.config.titleLeft ? 'size_full' : 'size_small'"
       ref="btn"
       size="big"
       :theme="config.buttonColor"
@@ -32,10 +32,6 @@ export default {
       buttonColor: 'theme_blueSec',
     }, 
   }),
-  mounted() {
-    const parent = this.$refs.container.closest('.grid-stack-item-content');
-    parent.style.backgroundColor = 'var(--background_main)';
-  },
   methods: {
     clickHandler() {
       this.eventSystem.publishEvent('Clicked');

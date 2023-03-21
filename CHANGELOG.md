@@ -12,11 +12,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - plugin state API
 - additional settings for the panel
 - options of displaying the panel through the component settings
+- the adaptive design of the panel
 
 ### Changed
 
 - the design of panel
 - logic of the config
+- the color of the Container is set in styles file
 
 ### Removed  
 
