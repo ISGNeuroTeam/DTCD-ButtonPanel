@@ -6,7 +6,9 @@
       v-text="config.titleLeft"
     >
     </div>
-    <base-button
+    <base-button 
+      class="buttonMain" 
+      :class="!this.config.titleLeft ? 'size_full' : 'size_small'"
       ref="btn"
       size="big"
       :theme="config.buttonColor"
@@ -26,14 +28,10 @@ export default {
     eventSystem: self.$root.eventSystem,
     config: {
       title: 'Кнопка',
-      titleLeft: 'Текст слева',
+      titleLeft: '',
       buttonColor: 'theme_blueSec',
     }, 
   }),
-  mounted() {
-    const parent = this.$refs.container.closest('.grid-stack-item-content');
-    parent.style.backgroundColor = 'var(--background_main)';
-  },
   methods: {
     clickHandler() {
       this.eventSystem.publishEvent('Clicked');
