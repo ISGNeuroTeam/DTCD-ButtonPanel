@@ -1,7 +1,33 @@
-.container
+.Container
   width: 100%
   height: 100%
+  padding: 10px
+  display: flex
+  align-items: center
+  justify-content: space-around
+  column-gap: 10px
+  word-wrap: break-word
+  background-color: var(--background_main)
+  overflow: hidden
 
-  .button
-    width: 100%
-    height: 100%
+  &,
+  *,
+  *::after,
+  *::before 
+    box-sizing: border-box
+
+  .TextLeft
+    color: var(--text_main)
+    font-weight: 700
+    font-size: 18px
+    max-height: 100%
+    overflow: auto
+
+  .buttonMain
+    &.size_full
+      height: 100%
+      width: 100%
+
+    &.size_small
+      height: auto
+      width: auto
